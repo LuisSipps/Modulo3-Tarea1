@@ -23,7 +23,7 @@ router.post('/', autenticarJWT, autorizarRol('admin'), async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const movimientos = await Movimiento.find().populate('pokemon', 'name').populate('creador', 'username');
+    const movimientos = await Movimiento.find().populate('pokemon', 'name').populate('creadoPor', 'username');
     res.json(movimientos);
   } catch (error) {
     res.status(500).json({

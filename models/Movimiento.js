@@ -40,7 +40,7 @@ const movimientoSchema = new mongoose.Schema({
 
   creadoPor: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Usuario",
+    ref: "User",
     required: [true, 'El creador es obligatorio']
   }
 
