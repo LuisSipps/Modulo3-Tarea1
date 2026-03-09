@@ -1,10 +1,10 @@
 import express from 'express';
 import Movimiento from '../models/Movimiento.js';
-import { autenticarJWT , autorizarRol} from '../middlewares/auth.js';
+import { autenticarJWT, autorizarRol } from '../middlewares/auth.js';
 
 const router = express.Router();
 
-router.post('/', autenticarJWT , autorizarRol('admin'),async (req, res) => {
+router.post('/', autenticarJWT, autorizarRol('admin'), async (req, res) => {
   const nuevoMovimiento = req.body;
   console.log('Nuevo Ataque recibido', nuevoMovimiento);
   try {

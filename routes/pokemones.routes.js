@@ -48,7 +48,7 @@ router.post('/', autenticarJWT, autorizarRol('admin'), async (req, res) => {
 });
 
 
-router.put('/:id', autenticarJWT, autorizarRol('admin'),async (req, res) => {
+router.put('/:id', autenticarJWT, autorizarRol('admin'), async (req, res) => {
   const { id } = req.params;
   const datosActualizados = req.body;
   try {
@@ -65,7 +65,7 @@ router.put('/:id', autenticarJWT, autorizarRol('admin'),async (req, res) => {
   }
 });
 
-router.patch('/:id', autenticarJWT, autorizarRol('admin'),async (req, res) => {
+router.patch('/:id', autenticarJWT, autorizarRol('admin'), async (req, res) => {
   const { id } = req.params;
   const datosActualizados = req.body;
   try {
@@ -82,13 +82,18 @@ router.patch('/:id', autenticarJWT, autorizarRol('admin'),async (req, res) => {
   }
 });
 
-router.delete('/:id', autenticarJWT, autorizarRol('admin'),async (req, res) => {
+router.delete('/:id', autenticarJWT, autorizarRol('admin'), async (req, res) => {
   const { id } = req.params;
   try {
-    const pokemonEliminado = await Pokemon.findById(id);
+    const pokemonEliminado = await Pokemon.findByIdAndUpdate(
+      id,
+      {
+        isDeleted: true,
+        deletedAt: new Date()
+      },
+      { new: true }
+    );
     if (pokemonEliminado) {
-      pokemonEliminado.deletedAt = true;
-      await pokemonEliminado.save();
       res.json({ mensaje: 'Pokemon eliminado correctamente' });
     } else {
       res.status(404).json({ mensaje: 'Pokemon no encontrado' });
