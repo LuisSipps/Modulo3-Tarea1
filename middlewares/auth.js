@@ -10,7 +10,7 @@ export const autenticarJWT = (req, res, next) => {
         jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
             console.log("ERROR JWT:", err);//
             if (err) {
-                return res.status(401).json({ mensaje: 'Token invalido' });
+                return res.status(401).json({ mensaje: 'Token inválido' });
             }
             req.usuario = decoded;
             next();
@@ -25,7 +25,7 @@ export const autorizarRol = (rolPermitido) => {
         if (req.usuario && req.usuario.role === rolPermitido) {
             next();
         } else {
-            res.status(403).json({ mensaje: 'No tienes permiso para realizar esta accion' });
+            res.status(403).json({ mensaje: 'No tienes permiso para realizar esta acción' });
         }
 
 
