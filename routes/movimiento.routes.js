@@ -21,7 +21,7 @@ router.post('/', autenticarJWT, autorizarRol('admin'), async (req, res) => {
   }
 });
 
-router.get('/', async (req, res) => {
+router.get('/', autenticarJWT, async (req, res) => {
   try {
     const movimientos = await Movimiento.find().populate('pokemon', 'name').populate('creadoPor', 'username');
     res.json(movimientos);

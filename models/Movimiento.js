@@ -14,10 +14,10 @@ const movimientoSchema = new mongoose.Schema({
     lowercase: true
   },
 
-  clase:{
-        type: String,
-        enum: ['especial', 'físico']
-    },
+  clase: {
+    type: String,
+    enum: ['especial', 'físico']
+  },
 
   poder: {
     type: Number
