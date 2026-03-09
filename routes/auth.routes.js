@@ -46,7 +46,7 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
 
   const { email, password } = req.body;
-
+console.log("SECRET:", process.env.JWT_SECRET);
   try {
 
     const usuario = await Usuario.findOne({ email });
