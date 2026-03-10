@@ -4,9 +4,12 @@ import usuariosRouter from './routes/users.routes.js'
 import movimientosRouter from './routes/movimiento.routes.js';
 import authRouter from './routes/auth.routes.js';
 import conectarDB from './config/database.js';
+import errorHandler from './middlewares/errorHandler.js';
+
 
 const app = express();
 app.use(express.json());
+app.use(errorHandler);
 
 await conectarDB();
 
