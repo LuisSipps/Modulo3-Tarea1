@@ -1,67 +1,59 @@
 import express from 'express';
 import Pokemon from '../models/Pokemon.js';
+import AppError from '../utils/AppError.js';
 import { autenticarJWT, autorizarRol } from '../middlewares/auth.js';
 
 const router = express.Router();
 
-
-router.get('/', async (req, res) => {
-
+router.get('/', async (req, res, next) => {
   try {
     const pokemones = await Pokemon.find({ isDeleted: false });
+
+    if (!pokemones) {
+      return next(new AppError('No se pudieron obtener los pokemones', 404));
+    }
     res.json(pokemones);
   } catch (error) {
-    res.status(500).json({
-      mensaje: 'Error al obtener los pokemones', error: error.message
-    });
+    next(new AppError('Error al obtener los pokemones', 500));
   }
-
 });
 
-router.get('/:id', async (req, res) => {
-  const { id } = req.params; // const id = req.params.id
+router.get('/:id', async (req, res, next) => {
+  const { id } = req.params;
   try {
-    const pokemon = await Pokemon.find({ _id: id, isDeleted: false });
-    if (pokemon) {
-      res.json(pokemon)
-    } else {
-      res.status(404).json({ mensaje: 'Pokemon no encontrado' });
+    const pokemon = await Pokemon.findOne({ _id: id, isDeleted: false });
+    if (!pokemon) {
+      return next(new AppError('Pokemon no encontrado', 404));
     }
+    res.json(pokemon);
   } catch (error) {
-    res.status(500).json({
-      mensaje: 'Error al obtener el Pokemon', error: error.message
-    });
+    next(new AppError('Error al obtener el Pokemon', 500));
   }
 });
 
-router.post('/', autenticarJWT, autorizarRol('admin'), async (req, res) => {
+router.post('/', autenticarJWT, autorizarRol('admin'), async (req, res, next) => {
   const nuevoPokemonData = req.body;
   try {
     const nuevoPokemon = new Pokemon(nuevoPokemonData);
     const pokemonGuardado = await nuevoPokemon.save();
     res.status(201).json(pokemonGuardado);
   } catch (error) {
-    res.status(400).json({
-      mensaje: 'Error al crear al Pokemon', error: error.message
-    });
+    next(new AppError('Error al crear el Pokemon', 400));
   }
 });
 
 
-router.put('/:id', autenticarJWT, autorizarRol('admin'), async (req, res) => {
+router.put('/:id', autenticarJWT, autorizarRol('admin'), async (req, res, next) => {
   const { id } = req.params;
   const datosActualizados = req.body;
   try {
     const pokemonActualizado = await Pokemon.findByIdAndUpdate(id, datosActualizados, { new: true });
-    if (pokemonActualizado) {
-      res.json(pokemonActualizado);
-    } else {
-      res.status(404).json({ mensaje: 'Pokemon no encontrado' });
+    if (!pokemonActualizado) {
+      return next(new AppError('Pokemon no encontrado', 404));
     }
+    res.json(pokemonActualizado);
   } catch (error) {
-    res.status(400).json({
-      mensaje: 'Error al actualizar la consola', error: error.message
-    });
+    next(new AppError('Error al actualizar el Pokemon', 400));
   }
 });
 
@@ -82,26 +74,17 @@ router.patch('/:id', autenticarJWT, autorizarRol('admin'), async (req, res) => {
   }
 });
 
-router.delete('/:id', autenticarJWT, autorizarRol('admin'), async (req, res) => {
+router.delete('/:id', autenticarJWT, autorizarRol('admin'), async (req, res, next) => {
   const { id } = req.params;
   try {
-    const pokemonEliminado = await Pokemon.findByIdAndUpdate(
-      id,
-      {
-        isDeleted: true,
-        deletedAt: new Date()
-      },
-      { new: true }
-    );
-    if (pokemonEliminado) {
-      res.json({ mensaje: 'Pokemon eliminado correctamente' });
-    } else {
-      res.status(404).json({ mensaje: 'Pokemon no encontrado' });
+    const pokemonEliminado = await Pokemon.findByIdAndUpdate( id,{ isDeleted: true, deletedAt: new Date()},{ new: true });
+    if (!pokemonEliminado) {
+      return next(new AppError('Pokemon no encontrado', 404));
     }
+    res.json({ mensaje: 'Pokemon eliminado correctamente' });
+
   } catch (error) {
-    res.status(500).json({
-      mensaje: 'Error al eliminar el pokemon', error: error.message
-    });
+    next(new AppError('Error al eliminar el Pokemon', 500));
   }
 });
 
