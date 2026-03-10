@@ -4,13 +4,13 @@ import { autenticarJWT, autorizarRol } from '../middlewares/auth.js';
 
 const router = express.Router();
 
-router.post('/', autenticarJWT, autorizarRol('admin'), async (req, res) => {
+router.post('/', autenticarJWT, async (req, res) => {
   const nuevoMovimiento = req.body;
   console.log('Nuevo Ataque recibido', nuevoMovimiento);
   try {
     console.log('Usuario autenticado:', req.usuario);
     const creadorId = req.usuario.id;
-    nuevoMovimiento.creador = creadorId;
+    nuevoMovimiento.creadoPor = creadorId;
     const nuevoMovimientoData = new Movimiento(nuevoMovimiento);
     const movimientoGuardado = await nuevoMovimientoData.save();
     res.status(201).json(movimientoGuardado);
