@@ -18,7 +18,7 @@ pero adaptados al contexto de Pokémon:
 
 ## Instalación
 
-1. Clonar el repositorio
+1. Clonar el repositorio https://github.com/LuisSipps/Modulo3-Tarea1.git
 2. Instalar dependencias
     En la dirección de la carpeta de nuestro proyecto deberemos instalar lo siguiente:
     - Inicializamos el proyecto Node.js                    > npm init -y
@@ -30,12 +30,16 @@ pero adaptados al contexto de Pokémon:
 npm install
 
 3. Crear archivo .env
+En nuestro proyecto de Visual Studio Code debemos crear un nuevo archivo llamado .env
+y copiar y pegar lo siguiente:
 
-JWT_SECRET=tu_secreto
+PORT=3000
+MONGODB_URI=mongodb+srv://luissepulvedavillarroel_db_user:KsIveTGIsWsppC02@clusterdiplomadoipss.beyx1x4.mongodb.net/?appName=ClusterDiplomadoIPSS
+JWT_SECRET=ipss
 
 4. Ejecutar el servidor
-
-npm run dev
+En visual Studio Code abriremos una nueva terminal en la barra superior yescribir lo siguiente:
+> npm start
 
 ## Endpoints principales
 
