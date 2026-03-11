@@ -1,7 +1,7 @@
 import express from 'express';
 import Movimiento from '../models/Movimiento.js';
 import AppError from '../utils/AppError.js';
-import { autenticarJWT, autorizarRol } from '../middlewares/auth.js';
+import { autenticarJWT} from '../middlewares/auth.js';
 
 const router = express.Router();
 
