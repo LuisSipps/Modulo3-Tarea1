@@ -18,27 +18,24 @@ pero adaptados al contexto de Pokémon:
 
 ## Instalación
 
-1. Clonar el repositorio https://github.com/LuisSipps/Modulo3-Tarea1.git
+1. Clonar el repositorio:
+    - Ir al repositorio en Github https://github.com/LuisSipps/Modulo3-Tarea1.git
+    - Presionar el boton verde <> code y apretamos Download ZIP.
+    - Extraemos el archivo ZIP y la abrimos en Visual Studio Code.
+
 2. Instalar dependencias
-    En la dirección de la carpeta de nuestro proyecto deberemos instalar lo siguiente:
-    - Inicializamos el proyecto Node.js                    > npm init -y
-    - Instalamos Express                                   > npm i express
-    - Instalamos Mongoose                                  > npm i mongoose
-    - Instalamos bcrypt para Encriptar contraseñas         > npm install bcrypt
-    - Instalamos jsonwebtoken para autentificacion con JWT > npm i jsonwebtoken
+    - Abrimos un CMD como administrador y abrimos nuestro proyecto
+    - Ahora ejecutamos > npm install
 
-npm install
-
-3. Crear archivo .env
-En nuestro proyecto de Visual Studio Code debemos crear un nuevo archivo llamado .env
-y copiar y pegar lo siguiente:
+3. Crear archivo .env en Visual Studio Code
+Crear un archivo llamado `.env` en la raíz del proyecto con el siguiente contenido:
 
 PORT=3000
 MONGODB_URI=mongodb+srv://luissepulvedavillarroel_db_user:KsIveTGIsWsppC02@clusterdiplomadoipss.beyx1x4.mongodb.net/?appName=ClusterDiplomadoIPSS
 JWT_SECRET=ipss
 
 4. Ejecutar el servidor
-En visual Studio Code abriremos una nueva terminal en la barra superior yescribir lo siguiente:
+En el CMD o en una terminal de Visual Studio Code ejecutaremos nuestro servidor con:
 > npm start
 
 ## Endpoints principales
@@ -57,3 +54,7 @@ DELETE /api/pokemones/:id
 ### Movimientos
 GET /api/movimientos
 POST /api/movimientos
+
+## Autor
+
+Luis Sepúlveda Villarroel
