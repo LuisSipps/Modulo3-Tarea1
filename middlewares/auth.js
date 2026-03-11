@@ -2,13 +2,9 @@ import jwt from 'jsonwebtoken';
 
 export const autenticarJWT = (req, res, next) => {
     const authHeader = req.headers.authorization;
-    console.log("HEADER:", authHeader);//
-    console.log("SECRET:", process.env.JWT_SECRET);//
     if (authHeader) {
         const token = authHeader.split(' ')[1];
-        console.log("TOKEN:", token);//
         jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-            console.log("ERROR JWT:", err);//
             if (err) {
                 return res.status(401).json({ mensaje: 'Token inválido' });
             }

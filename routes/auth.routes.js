@@ -36,7 +36,6 @@ router.post("/register", async (req, res, next) => {
 
 router.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
-  console.log("SECRET:", process.env.JWT_SECRET);//
   try {
 
     if (!email || !password) {

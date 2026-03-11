@@ -23,12 +23,3 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Escuchando en el puerto ${PORT}`);
 });
-
-app.use((err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
-
-  res.status(statusCode).json({
-    status: "error",
-    message: err.message
-  });
-});
