@@ -31,8 +31,8 @@ pero adaptados al contexto de Pokémon:
 Crear un archivo llamado `.env` en la raíz del proyecto con el siguiente contenido:
 
 PORT=3000
-MONGODB_URI=mongodb+srv://luissepulvedavillarroel_db_user:KsIveTGIsWsppC02@clusterdiplomadoipss.beyx1x4.mongodb.net/?appName=ClusterDiplomadoIPSS
-JWT_SECRET=ipss
+MONGODB_URI=tu_uri_de_mongodb
+JWT_SECRET=tu_clave_secreta
 
 4. Ejecutar el servidor
 En el CMD o en una terminal de Visual Studio Code ejecutaremos nuestro servidor con:
