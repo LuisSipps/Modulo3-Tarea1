@@ -1,10 +1,11 @@
 import express from 'express';
 import Movimiento from '../models/Movimiento.js';
+import AppError from '../utils/AppError.js';
 import { autenticarJWT, autorizarRol } from '../middlewares/auth.js';
 
 const router = express.Router();
 
-router.post('/', autenticarJWT, async (req, res) => {
+router.post('/', autenticarJWT, async (req, res, next) => {
   const nuevoMovimiento = req.body;
   console.log('Nuevo Ataque recibido', nuevoMovimiento);
   try {
@@ -15,20 +16,16 @@ router.post('/', autenticarJWT, async (req, res) => {
     const movimientoGuardado = await nuevoMovimientoData.save();
     res.status(201).json(movimientoGuardado);
   } catch (error) {
-    res.status(400).json({
-      mensaje: 'Error al crear al Error al guardar movimiento', error: error.message
-    });
+    next(new AppError('Error al guardar el movimiento', 400));
   }
 });
 
-router.get('/', autenticarJWT, async (req, res) => {
+router.get('/', async (req, res, next) => {
   try {
     const movimientos = await Movimiento.find().populate('pokemon', 'name').populate('creadoPor', 'username');
     res.json(movimientos);
   } catch (error) {
-    res.status(500).json({
-      mensaje: 'Error al obtener los movimientos', error: error.message
-    });
+    next(new AppError('Error al obtener los movimientos', 500));
   }
 
 });
