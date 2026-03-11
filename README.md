@@ -44,16 +44,16 @@ En visual Studio Code abriremos una nueva terminal en la barra superior yescribi
 ## Endpoints principales
 
 ### Auth
-POST /auth/register
-POST /auth/login
+POST /api/auth/register
+POST /api/auth/login
 
 ### Pokemones
-GET /pokemones
-GET /pokemones/:id
-POST /pokemones
-PUT /pokemones/:id
-DELETE /pokemones/:id
+GET /api/pokemones
+GET /api/pokemones/:id
+POST /api/pokemones
+PUT /api/pokemones/:id
+DELETE /api/pokemones/:id
 
 ### Movimientos
-GET /movimientos
-POST /movimientos
+GET /api/movimientos
+POST /api/movimientos
