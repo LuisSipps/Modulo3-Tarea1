@@ -2,67 +2,57 @@ import express from "express";
 import Usuario from "../models/Usuario.js";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
+import AppError from '../utils/AppError.js';
 
 const router = express.Router();
 
-router.post("/register", async (req, res) => {
-
-    const { username, email, password } = req.body;
-
-    try {
-        const usuarioExistente = await Usuario.findOne({ email });
-        if (usuarioExistente) {
-            return res.status(400).json({ mensaje: "El usuario ya existe" });
-        }
-
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
-
-        const nuevoUsuario = new Usuario({
-            username,
-            email,
-            password: hashedPassword
-        });
-
-        const usuarioGuardado = await nuevoUsuario.save();
-
-        res.status(201).json({
-            mensaje: "Usuario registrado correctamente",
-            usuario: {
-                id: usuarioGuardado._id,
-                username: usuarioGuardado.username,
-                email: usuarioGuardado.email
-            }
-        });
-    } catch (error) {
-        res.status(500).json({
-            mensaje: "Error al registrar usuario",
-            error: error.message
-        });
+router.post("/register", async (req, res, next) => {
+  const { username, email, password } = req.body;
+  try {
+    const usuarioExistente = await Usuario.findOne({ email });
+    if (usuarioExistente) {
+      return next(new AppError("El usuario ya existe", 400));
     }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const nuevoUsuario = new Usuario({ username, email, password: hashedPassword });
+    const usuarioGuardado = await nuevoUsuario.save();
+
+    res.status(201).json({
+      mensaje: "Usuario registrado correctamente",
+      usuario: {
+        id: usuarioGuardado._id,
+        username: usuarioGuardado.username,
+        email: usuarioGuardado.email
+      }
+    });
+  } catch (error) {
+    next(new AppError('Error al registrar el usuario', 500));
+  }
 });
 
 
-router.post("/login", async (req, res) => {
-
+router.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
-console.log("SECRET:", process.env.JWT_SECRET);
+  console.log("SECRET:", process.env.JWT_SECRET);//
   try {
+
+    if (!email || !password) {
+      return next(new AppError("Email y contraseña son obligatorios", 400));
+    }
 
     const usuario = await Usuario.findOne({ email });
 
     if (!usuario) {
-      return res.status(404).json({
-        mensaje: "Usuario no encontrado"
-      });
+      return next(new AppError('Usuario no encontrado', 404));
     }
 
     const esValido = await bcrypt.compare(password, usuario.password);
 
     if (!esValido) {
-      return res.status(401).json({
-        mensaje: "Contraseña incorrecta"
-      });
+      return next(new AppError('Credenciales invalidas', 401));
     }
 
     const token = jwt.sign(
@@ -82,12 +72,7 @@ console.log("SECRET:", process.env.JWT_SECRET);
     });
 
   } catch (error) {
-
-    res.status(500).json({
-      mensaje: "Error al iniciar sesión",
-      error: error.message
-    });
-
+    next(new AppError('Error al iniciar sesión', 500));
   }
 
 });

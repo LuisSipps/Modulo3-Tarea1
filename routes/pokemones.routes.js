@@ -57,23 +57,6 @@ router.put('/:id', autenticarJWT, autorizarRol('admin'), async (req, res, next) 
   }
 });
 
-router.patch('/:id', autenticarJWT, autorizarRol('admin'), async (req, res) => {
-  const { id } = req.params;
-  const datosActualizados = req.body;
-  try {
-    const pokemonActualizado = await Pokemon.findByIdAndUpdate(id, datosActualizados, { new: true });
-    if (pokemonActualizado) {
-      res.json(pokemonActualizado);
-    } else {
-      res.status(404).json({ mensaje: 'Pokemon no encontrado' });
-    }
-  } catch (error) {
-    res.status(400).json({
-      mensaje: 'Error al actualizar la consola', error: error.message
-    });
-  }
-});
-
 router.delete('/:id', autenticarJWT, autorizarRol('admin'), async (req, res, next) => {
   const { id } = req.params;
   try {
