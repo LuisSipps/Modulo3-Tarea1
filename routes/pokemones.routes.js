@@ -60,7 +60,7 @@ router.put('/:id', autenticarJWT, autorizarRol('admin'), async (req, res, next) 
 router.delete('/:id', autenticarJWT, autorizarRol('admin'), async (req, res, next) => {
   const { id } = req.params;
   try {
-    const pokemonEliminado = await Pokemon.findByIdAndUpdate( id,{ isDeleted: true, deletedAt: new Date()},{ new: true });
+    const pokemonEliminado = await Pokemon.findByIdAndUpdate(id, { isDeleted: true, deletedAt: new Date() }, { new: true });
     if (!pokemonEliminado) {
       return next(new AppError('Pokemon no encontrado', 404));
     }
