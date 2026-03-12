@@ -1,0 +1,372 @@
+{
+  "info": {
+    "_postman_id": "409e8e40-fd11-46c6-969e-fde5b3665462",
+    "name": "API Pokemon - Luis Sepúlveda",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51934778",
+    "_collection_link": "https://go.postman.co/collection/51934778-409e8e40-fd11-46c6-969e-fde5b3665462?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Usuarios",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTlkMTA3MGZkMGJkNDRmNTBkNTI0MiIsInVzZXJuYW1lIjoiTHVpcyIsImVtYWlsIjoibHVpc0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzMyNDk5MjMsImV4cCI6MTc3MzI1MzUyM30.b0U1oR0sXHJ41GW-YU6UW_xqT_q3HnZxhds6Iknw6qk",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/usuarios",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "usuarios"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Usuario en particular",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTlkMTA3MGZkMGJkNDRmNTBkNTI0MiIsInVzZXJuYW1lIjoiTHVpcyIsImVtYWlsIjoibHVpc0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzMyNDk5MjMsImV4cCI6MTc3MzI1MzUyM30.b0U1oR0sXHJ41GW-YU6UW_xqT_q3HnZxhds6Iknw6qk",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/usuarios/69a9d1070fd0bd44f50d5242",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "usuarios",
+            "69a9d1070fd0bd44f50d5242"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2i. Registrar nuevo usuario",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"Paulina\",\r\n    \"email\": \"paulina@gmail.com\",\r\n    \"password\": \"Test1234\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2ii. Login Usuario",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"luis@gmail.com\",\r\n    \"password\": \"Test1234\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3i. Pokemones",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/pokemones",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "pokemones"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3ii. Nuevo pokemon",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTlkMTA3MGZkMGJkNDRmNTBkNTI0MiIsInVzZXJuYW1lIjoiTHVpcyIsImVtYWlsIjoibHVpc0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzMyNDk5MjMsImV4cCI6MTc3MzI1MzUyM30.b0U1oR0sXHJ41GW-YU6UW_xqT_q3HnZxhds6Iknw6qk",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"pokemon_number\": 143,\r\n    \"name\": \"Snorlax\",\r\n    \"type\": [\"Normal\"],\r\n    \"abilities\": [\"Immunity\", \"Thick Fat\"],\r\n    \"stats\": { \"hp\": 160, \"attack\": 110, \"defense\": 65, \"speed\": 30 }\r\n  }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/pokemones/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "pokemones",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3ii. Editar pokemon",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTlkMTA3MGZkMGJkNDRmNTBkNTI0MiIsInVzZXJuYW1lIjoiTHVpcyIsImVtYWlsIjoibHVpc0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzMyNDk5MjMsImV4cCI6MTc3MzI1MzUyM30.b0U1oR0sXHJ41GW-YU6UW_xqT_q3HnZxhds6Iknw6qk",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n        \"_id\": \"69a5a0cc36dba5041b349947\",\r\n        \"pokemon_number\": 1,\r\n        \"name\": \"Bulbasaur\",\r\n        \"type\": [\r\n            \"Grass\",\r\n            \"Poison\"\r\n        ],\r\n        \"abilities\": [\r\n            \"Overgrow\",\r\n            \"Chlorophyll\"\r\n        ],\r\n        \"stats\": {\r\n            \"hp\": 45,\r\n            \"attack\": 66,\r\n            \"defense\": 49,\r\n            \"speed\": 45\r\n        },\r\n        \"createdAt\": \"2026-03-02T14:38:04.291Z\",\r\n        \"updatedAt\": \"2026-03-02T14:38:04.291Z\"\r\n    }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/pokemones/69a5a0cc36dba5041b349947",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "pokemones",
+            "69a5a0cc36dba5041b349947"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3ii. Eliminar pokemon",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTlkMTA3MGZkMGJkNDRmNTBkNTI0MiIsInVzZXJuYW1lIjoiTHVpcyIsImVtYWlsIjoibHVpc0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzMyNDk5MjMsImV4cCI6MTc3MzI1MzUyM30.b0U1oR0sXHJ41GW-YU6UW_xqT_q3HnZxhds6Iknw6qk",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/pokemones/69a5a0cc36dba5041b349947",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "pokemones",
+            "69a5a0cc36dba5041b349947"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3iii. Movimientos",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/movimientos/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "movimientos",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3iv. Nuevo movimiento",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YTlkMTA3MGZkMGJkNDRmNTBkNTI0MiIsInVzZXJuYW1lIjoiTHVpcyIsImVtYWlsIjoibHVpc0BnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzMyNDk5MjMsImV4cCI6MTc3MzI1MzUyM30.b0U1oR0sXHJ41GW-YU6UW_xqT_q3HnZxhds6Iknw6qk",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"nombre\": \"Brick Break\",\r\n    \"tipo\": \"Fight\",\r\n    \"clase\": \"especial\",\r\n    \"poder\": 75,\r\n    \"precision\": 100,\r\n    \"pp\": 15,\r\n    \"pokemon\": \"69a5a4d3a1ce98bc3eeadb76\"\r\n  }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/movimientos/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "movimientos",
+            ""
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
