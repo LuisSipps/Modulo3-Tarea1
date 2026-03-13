@@ -41,19 +41,18 @@ En el CMD o en una terminal de Visual Studio Code ejecutaremos nuestro servidor 
 ## Endpoints principales
 
 ### Auth
-POST /api/auth/register
-POST /api/auth/login
+POST http://localhost:3000/api/auth/register
+POST http://localhost:3000/api/auth/login
 
 ### Pokemones
-GET /api/pokemones
-GET /api/pokemones/:id
-POST /api/pokemones
-PUT /api/pokemones/:id
-DELETE /api/pokemones/:id
+GET http://localhost:3000/api/pokemones
+POST http://localhost:3000/api/pokemones/
+PUT http://localhost:3000/api/pokemones/69a5a0cc36dba5041b349947
+DELETE http://localhost:3000/api/pokemones/69a5a0cc36dba5041b349947
 
 ### Movimientos
-GET /api/movimientos
-POST /api/movimientos
+GET http://localhost:3000/api/movimientos/
+POST http://localhost:3000/api/movimientos/
 
 ## Autor
 
